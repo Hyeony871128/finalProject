@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="productMapper">
+
+	<resultMap type="Product" id="productResultSet">
+	<id property="productNum" column="PRODUCT_NUM"></id>
+	<result property="categoryNum" column="CATEGORY_NUM"></result>
+	<result property="productMainName" column="PRODUCT_MAIN_NAME"></result>
+	<result property="productMainPath" column="PRODUCT_MAIN_PATH"></result>
+	<result property="productName" column="PRODUCT_NAME"></result>
+	<result property="productStock" column="PRODUCT_STOCK"></result>
+	<result property="productPrice" column="PRODUCT_PRICE"></result>
+	<result property="productInfo" column="PRODUCT_INFO"></result>
+	<result property="productSize" column="PRODUCT_SIZE"></result>
+	<result property="productColor" column="PRODUCT_COLOR"></result>
+	<result property="productShowCnt" column="PRODUCT_SHOW_CNT"></result>
+	<result property="productStatus" column="PRODUCT_STATUS"></result>
+	<result property="cdt" column="CDT"></result>	
+	<result property="mdt" column="MDT"></result>	
+	</resultMap>
+	
+	<!-- 상품등록입력 -->
+	<insert id="insertProduct" parameterType="Product">
+	INSERT INTO PRODUCT
+	VALUES(PRODUCT_NUM.NEXTVAL,#{categoryNum},#{productMainName},#{productMainPath},
+	#{productName},#{productStock},#{productPrice},
+	#{productInfo},#{productSize},#{productColor},
+	#{productShowCnt},#{productStatus},SYSDATE,SYSDATE)
+	</insert>
+	
+	<select id="selectList" resultMap="productResultSet">
+	SELECT * 
+	FROM PRODUCT
+	ORDER BY productNUM
+	</select>
+	
+	<select id="rodSelectList" parameterType="Product" resultMap="productResultSet">
+	SELECT *
+	FROM PRODUCT
+	WHERE CATEGORY_NUM='1'
+	</select>
+	
+	<select id="reelSelectList" parameterType="Product" resultMap="productResultSet">
+	SELECT *
+	FROM PRODUCT
+	WHERE CATEGORY_NUM='2'
+	</select>
+	
+	<select id="baitSelectList" parameterType="Product" resultMap="productResultSet">
+	SELECT *
+	FROM PRODUCT
+	WHERE CATEGORY_NUM='3'
+	</select>
+	
+	<select id="lineSelectList" parameterType="Product" resultMap="productResultSet">
+	SELECT *
+	FROM PRODUCT
+	WHERE CATEGORY_NUM='4'
+	</select>
+	
+	<select id="bagSelectList" parameterType="Product" resultMap="productResultSet">
+	SELECT *
+	FROM PRODUCT
+	WHERE CATEGORY_NUM='5'
+	</select>
+	
+	<select id="selectOne" parameterType="_int" resultMap="productResultSet">
+	SELECT * 
+	FROM PRODUCT
+	WHERE PRODUCT_NUM=#{productNum}	
+	</select>
+	
+
+	
+	
+  
+</mapper>
